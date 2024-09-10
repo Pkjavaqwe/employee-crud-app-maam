@@ -1,0 +1,12 @@
+
+<div class="row">
+    <div class="col-sm-6 border border-4" *ngFor="let employee of employees">
+       <app-employee-card  [employee]="employee" ></app-employee-card> <!-- Angular data sharing-->
+    </div>
+</div>
+<!-- 
+[attribute]
+(event)
+[(ngModel)]
+{{stringinterpolation}}
+-->
