@@ -1,3 +1,4 @@
+import { transition } from '@angular/animations';
 import { leadingComment } from '@angular/compiler';
 import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
@@ -14,10 +15,11 @@ export class LearningComponent implements OnInit, OnDestroy, OnChanges {
   checkStatus=false;
   inputType="password";
   static companyDirector="Mr John";
-  slogan=""
+  slogan=""  //4. declare the variable to hold the data of child
   className=LearningComponent;
 
-   companyOffices=['Dadar, Mumbai', 'Parel, mumbai','Rabale, mumbai', 'pune', 'noida', 'Indore']
+   companyOffices=['Parel, mumbai','Dadar, Mumbai', 'Rabale, mumbai', 'pune', 'noida', 'Indore']
+   
   offices=[
     {
       location:'Dadar, Mumbai (Headquarters)',
@@ -40,6 +42,24 @@ export class LearningComponent implements OnInit, OnDestroy, OnChanges {
       address:'WorkEdge Coworx - Coworking Noida, B 23, Sector 63 Road, B Block, Sector 63, Noida, Uttar Pradesh 201301'
     }
   ]
+  salaries=[7456.56789, 50000.3333,676767.56,7089898.88,56565656.5,78787878, 35677.444]
+
+  styleObject:any={
+    backgroundColor:'lightblue', 
+    color:'red', 
+    textDecoration:'underline',
+    width:'100px'
+  }
+  styleClasses=['bg-info', 'text-success', 'border', 'border-3','border-dark']
+
+  styleClassesObject={
+    'bg-info':false,
+    'text-success':true,
+    'border':true,
+    'border-3':true,
+    'border-dark':true
+  }
+  
   constructor(){
     console.log("in learning constrcutor");
     setInterval(()=>{
@@ -52,7 +72,14 @@ export class LearningComponent implements OnInit, OnDestroy, OnChanges {
       LearningComponent.companyDirector="Mr Herry"
     }, 2000)
   }
-
+  changeStyle1(){
+    this.styleObject.backgroundColor='green' // in angular any object is mutable
+    this.styleObject.transform='scale(2)' // new key getting added in existing object
+  }
+  changeStyle2(){
+    this.styleObject.backgroundColor='lightblue' // in angular any object is mutable
+    this.styleObject.transform='scale(1)'
+  }
   ngOnChanges(changes: SimpleChanges): void {
     console.log("in ngOnChanges of learning. this is lifecycle method gets called everytime when input bindings change");
     console.log(changes);
@@ -93,4 +120,26 @@ export class LearningComponent implements OnInit, OnDestroy, OnChanges {
   setCode(node:any){
     console.log(node.value);
   }
+  today=new Date();
+
+  currencyCode='INR'
+  currencyCodes=[
+    {
+      country:'india',
+      code:'INR'
+    },
+    {
+      country:'japan',
+      code:'JPY'
+    },
+    {
+      country:'america',
+      code:'USD'
+    },
+    {
+      country:'europe',
+      code:'EUR'
+    }
+  ]
+  birthDates=[new Date('5 July 2008'), new Date('4 July 2008'), new Date('12 July 2005')]
 }
