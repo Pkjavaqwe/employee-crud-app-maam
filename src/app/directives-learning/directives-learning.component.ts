@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
+import { CounterService } from '../customservices/counter.service';
 
 @Component({
   selector: 'app-directives-learning',
   templateUrl: './directives-learning.component.html',
-  styleUrl: './directives-learning.component.css'
+  styleUrl: './directives-learning.component.css',
+  providers:[CounterService] // n component object : n service object : destroy
 })
 export class DirectivesLearningComponent {
+  
   styleClasses=['bg-info', 'text-success', 'border', 'border-3','border-dark'];
   companyOffices=['Parel, mumbai','Dadar, Mumbai', 'Rabale, mumbai', 'pune', 'noida', 'Indore']
   styleClassesObject={
@@ -38,4 +41,17 @@ export class DirectivesLearningComponent {
       address:'WorkEdge Coworx - Coworking Noida, B 23, Sector 63 Road, B Block, Sector 63, Noida, Uttar Pradesh 201301'
     }
   ]
+
+  counter1=0;
+  constructor(private counterService:CounterService){
+    console.log("...... in DirectivesLearningComponent......");
+    // service object gets created only when it is required : when it is injected
+    this.counter1=this.counterService.scount; // getter
+    console.log(this.counter1);
+  }
+  increment(){
+    this.counterService.incrementCounter();
+    // we have to re fetch updated value
+    this.counter1=this.counterService.getCounter(); // method
+  }
 }
